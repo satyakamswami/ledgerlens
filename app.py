@@ -4,9 +4,89 @@ import streamlit as st
 from audit_engine import AuditEngine, REQUIRED_COLUMNS, demo_data
 from llm_engine import FinancialAnalyst
 from dotenv import load_dotenv
+
 load_dotenv()
 
-st.set_page_config(page_title="LedgerLens | AP Audit Intelligence", page_icon="🔎", layout="wide")
+# Page configuration
+st.set_page_config(
+    page_title="LedgerLens | AP Audit Intelligence",
+    page_icon="🔎",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# Precise minimalist CSS matching your aesthetic (pure black buttons, clean white cards, subtle borders, sleek layout)
+st.markdown("""
+    <style>
+    .stApp {
+        background-color: #ffffff;
+    }
+    .main {
+        background-color: #ffffff;
+    }
+    /* Metric Cards */
+    .stMetric {
+        background-color: #ffffff;
+        border: 1px solid #eaeaea;
+        padding: 16px 20px;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+    .stMetric label {
+        color: #666666 !important;
+        font-weight: 500;
+        font-size: 0.85rem !important;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    .stMetric [data-testid="stMetricValue"] {
+        color: #000000 !important;
+        font-weight: 600;
+    }
+    /* Headers */
+    h1, h2, h3 {
+        color: #000000;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        letter-spacing: -0.03em;
+    }
+    /* Sidebar */
+    .stSidebar {
+        background-color: #fafafa;
+        border-right: 1px solid #eaeaea;
+    }
+    /* Primary Buttons (Stark Black) */
+    .stButton>button {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        border: none !important;
+        font-weight: 500 !important;
+        padding: 0.5rem 1rem !important;
+        transition: opacity 0.2s ease;
+    }
+    .stButton>button:hover {
+        opacity: 0.85 !important;
+    }
+    /* Download Buttons */
+    .stDownloadButton>button {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        border: 1px solid #000000 !important;
+        border-radius: 8px !important;
+        font-weight: 500 !important;
+    }
+    .stDownloadButton>button:hover {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+    }
+    /* Inputs */
+    .stTextInput input {
+        border-radius: 8px;
+        border: 1px solid #d1d5db;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 st.title("LedgerLens")
 st.caption("Accounts Payable Leakage Detection · Evidence-first AI audit assistant")
 
